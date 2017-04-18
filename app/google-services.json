@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "590158583688",
+    "firebase_url": "https://sandbox-app-e2ff5.firebaseio.com",
+    "project_id": "sandbox-app-e2ff5",
+    "storage_bucket": "sandbox-app-e2ff5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590158583688:android:93b8143ddcb21a91",
+        "android_client_info": {
+          "package_name": "com.borombo.sandboxapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590158583688-kgj0d9lpge5nq2h8gq81sb2r7h2ajome.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.borombo.sandboxapp",
+            "certificate_hash": "ad75c853fabd4b7baf40a674f8b7b00e0494136e"
+          }
+        },
+        {
+          "client_id": "590158583688-u1dnk66s84hsd72ahoov7i8pl394lq62.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuZZlFIGskMKl6lIhFSXZdzTa94yTW7js"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "590158583688-u1dnk66s84hsd72ahoov7i8pl394lq62.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
