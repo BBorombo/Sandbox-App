@@ -3,21 +3,19 @@ package com.borombo.sandboxapp;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
-
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -29,7 +27,11 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -46,6 +48,9 @@ public class MailAuthActivity extends AppCompatActivity implements LoaderCallbac
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+
+    private String email;
+    private String password;
 
     private static final String TAG = "MailAuth";
 
@@ -85,11 +90,23 @@ public class MailAuthActivity extends AppCompatActivity implements LoaderCallbac
             }
         });
 
+        Button mEmailSignUpButton = (Button) findViewById(R.id.email_sign_up_button);
+        mEmailSignUpButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (attemptLogin()){
+                    signUpUser(email,password);
+                }
+            }
+        });
+
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                if (attemptLogin()){
+                    signInUser(email,password);
+                }
             }
         });
 
@@ -126,12 +143,42 @@ public class MailAuthActivity extends AppCompatActivity implements LoaderCallbac
     }
 
 
-    public void signInUser(){
-
+    public void signInUser(String email, String password){
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+                        if (!task.isSuccessful()){
+                            Log.w(TAG, "signInWithEmail:failed", task.getException());
+                            Toast.makeText(MailAuthActivity.this, "Sign In Auth Failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }else{
+                            authComplete();
+                        }
+                    }
+                });
     }
 
-    public void signUpUser(){
+    public void signUpUser(String email, String password){
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
+                        if (!task.isSuccessful()){
+                            Toast.makeText(MailAuthActivity.this, "Sign Up Failed.", Toast.LENGTH_SHORT).show();
+                        }else{
+                            authComplete();
+                        }
+                    }
+                });
+    }
 
+    private void authComplete(){
+        showProgress(false);
+        Intent intent = new Intent(MailAuthActivity.this, HomeProfileActivity.class);
+        startActivity(intent);
     }
 
     private void populateAutoComplete() {
@@ -183,14 +230,14 @@ public class MailAuthActivity extends AppCompatActivity implements LoaderCallbac
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin(){
+    private boolean attemptLogin(){
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        email = mEmailView.getText().toString();
+        password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -221,8 +268,9 @@ public class MailAuthActivity extends AppCompatActivity implements LoaderCallbac
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            // TODO : dzliadpi
         }
+
+        return cancel;
     }
 
     private boolean isEmailValid(String email) {
@@ -323,7 +371,6 @@ public class MailAuthActivity extends AppCompatActivity implements LoaderCallbac
         int ADDRESS = 0;
         int IS_PRIMARY = 1;
     }
-
 
 
     /**

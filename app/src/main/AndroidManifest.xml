@@ -22,7 +22,8 @@
         </activity>
         <activity
             android:name=".MailAuthActivity"
-            android:label="@string/title_activity_mail_auth"></activity>
+            android:label="@string/title_activity_mail_auth" />
+        <activity android:name=".HomeProfileActivity"></activity>
     </application>
 
 </manifest>
