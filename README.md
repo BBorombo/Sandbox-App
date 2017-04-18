@@ -7,9 +7,7 @@ Android Sandbox app for testing different commonly used libraries.
 ### Firebase
   - Authentication 
   
-    Email Sign In/Sign Up 
-    
-    GMail Sign In 
-    
-    Facebook Sign In 
+    * Email Sign In/Sign Up 
+    * GMail Sign In 
+    * Facebook Sign In 
 
