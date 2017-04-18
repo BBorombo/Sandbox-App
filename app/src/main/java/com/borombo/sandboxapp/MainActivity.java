@@ -9,6 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -19,6 +25,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -31,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private static final int RC_SIGN_IN = 9001;
 
     private static final String TAG_GMAIL = "GmailAuth";
+    private static final String TAG_FB = "FacebookAuth";
+
+    private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         Button mailButton = (Button) findViewById(R.id.buttonMail);
         Button gMailButton = (Button) findViewById(R.id.buttonGMail);
-        Button facebookButton = (Button) findViewById(R.id.buttonFb);
+        LoginButton facebookButton = (LoginButton) findViewById(R.id.buttonFb);
 
         mailButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,10 +90,24 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         });
 
-        facebookButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
+        callbackManager = CallbackManager.Factory.create();
+        facebookButton.setReadPermissions("email","public_profile");
+        facebookButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.d(TAG_FB, "facebook:onSuccess:" + loginResult);
+                handleFacebookAccessToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d(TAG_FB, "facebook:onCancel");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d(TAG_FB, "facebook:onError", error);
             }
         });
     }
@@ -117,15 +141,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             }else{
-                // Google Sign In failed
+                callbackManager.onActivityResult(requestCode, resultCode, data);
             }
         }
     }
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
-        Log.d(TAG_GMAIL, "firebaseAuthWithGoogle:" + account.getId());
-
-        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+    private void credentialFirebaseAuth(AuthCredential credential){
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -142,7 +163,21 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                         }
                     }
                 });
+    }
 
+    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
+        Log.d(TAG_GMAIL, "firebaseAuthWithGoogle:" + account.getId());
+
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        credentialFirebaseAuth(credential);
+
+    }
+
+    private void handleFacebookAccessToken(AccessToken token){
+        Log.d(TAG_FB, "handleFacebookAccessToken:" + token);
+
+        AuthCredential credential= FacebookAuthProvider.getCredential(token.getToken());
+        credentialFirebaseAuth(credential);
     }
 
     @Override
