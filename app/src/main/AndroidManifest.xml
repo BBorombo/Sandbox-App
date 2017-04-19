@@ -27,6 +27,9 @@
         <activity android:name=".HomeProfileActivity"></activity>
 
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="1ffbb4d8f56b452c2f6a45c95bd92187e4308015" />
     </application>
 
 </manifest>

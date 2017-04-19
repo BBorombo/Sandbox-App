@@ -29,8 +29,23 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.TwitterAuthProvider;
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
+
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+
+    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
+    private static final String TWITTER_KEY = "twitter_key";
+    private static final String TWITTER_SECRET = "twitter_secret";
+
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -39,13 +54,41 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     private static final String TAG_GMAIL = "GmailAuth";
     private static final String TAG_FB = "FacebookAuth";
+    private static final String TAG_TWITTER = "TwitterAuth";
 
     private CallbackManager callbackManager;
+    private TwitterLoginButton twitterButton;
+
+    private Button signOutButton;
+    private Button accountButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(Config.getConfigValue(this,TWITTER_KEY), Config.getConfigValue(this,TWITTER_SECRET));
+        Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_main);
+
+        signOutButton = (Button) findViewById(R.id.signOutButton);
+        accountButton = (Button) findViewById(R.id.accountHomePageButton);
+
+        accountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, HomeProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        signOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mAuth.getCurrentUser() != null){
+                    mAuth.signOut();
+                }
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener(){
@@ -55,11 +98,32 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null){
                     Log.d(TAG_GMAIL, "onAuthStateChanged:signed_in:" + user.getUid());
+                    accountButton.setVisibility(View.VISIBLE);
+                    signOutButton.setEnabled(true);
                 }else{
                     Log.d(TAG_GMAIL, "onAuthStateChanged:signed_out");
+                    accountButton.setVisibility(View.GONE);
+                    signOutButton.setEnabled(false);
                 }
             }
         };
+
+        twitterButton = (TwitterLoginButton) findViewById(R.id.buttonTwitter);
+
+        twitterButton.setCallback(new Callback<TwitterSession>() {
+            @Override
+            public void success(Result<TwitterSession> result) {
+                Log.d(TAG_TWITTER, "twitterLogin:success" + result);
+                handleTwitterSessison(result.data);
+
+            }
+
+            @Override
+            public void failure(TwitterException exception) {
+                Log.w(TAG_TWITTER, "twitterLogin:failure", exception);
+            }
+        });
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -112,6 +176,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         });
     }
 
+    private void handleTwitterSessison(TwitterSession session) {
+        Log.d(TAG_TWITTER, "handleTwitterSession:" + session);
+
+        AuthCredential credential = TwitterAuthProvider.getCredential(
+                session.getAuthToken().token,
+                session.getAuthToken().secret);
+        credentialFirebaseAuth(credential);
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -141,8 +214,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             }else{
-                callbackManager.onActivityResult(requestCode, resultCode, data);
+                // TODO : Handle Fail GOogle AUth
             }
+        }else if(requestCode == TwitterAuthConfig.DEFAULT_AUTH_REQUEST_CODE){
+            twitterButton.onActivityResult(requestCode, resultCode, data);
+        }else{
+            callbackManager.onActivityResult(requestCode, resultCode, data);
         }
     }
 
