@@ -4,6 +4,11 @@
 
     <string name="facebook_app_id">806992119465860</string>
 
+
+    <!-- FIrebase -->
+    <string name="firebase_auth">Authentication</string>
+    <string name="firebase_database">Database</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
