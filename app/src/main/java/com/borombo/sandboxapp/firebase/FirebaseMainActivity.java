@@ -20,7 +20,7 @@ public class FirebaseMainActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Firebase");
-        actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this,R.color.firebase_primary)));
+        actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this,R.color.firebase_dark)));
 
 
         ConstraintLayout authView = (ConstraintLayout) findViewById(R.id.firebaseAuthView);

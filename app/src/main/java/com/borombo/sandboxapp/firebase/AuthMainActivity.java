@@ -1,8 +1,11 @@
 package com.borombo.sandboxapp.firebase;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -60,9 +63,14 @@ public class AuthMainActivity extends AppCompatActivity implements GoogleApiClie
 
     private CallbackManager callbackManager;
     private TwitterLoginButton twitterButton;
+    private LoginButton facebookButton;
 
+    private Button mailButton;
+    private Button gMailButton;
     private Button signOutButton;
     private Button accountButton;
+    private Button visibleFbButton;
+    private Button visibleTwiButton;
 
 
     @Override
@@ -72,8 +80,35 @@ public class AuthMainActivity extends AppCompatActivity implements GoogleApiClie
         Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_firebase_auth_main);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Firebase Auth");
+        actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.firebase_dark)));
+
+        mailButton = (Button) findViewById(R.id.buttonMail);
+        gMailButton = (Button) findViewById(R.id.buttonGMail);
+
+        facebookButton = (LoginButton) findViewById(R.id.buttonFb);
+        twitterButton = (TwitterLoginButton) findViewById(R.id.buttonTwitter);
+
         signOutButton = (Button) findViewById(R.id.signOutButton);
         accountButton = (Button) findViewById(R.id.accountHomePageButton);
+        visibleFbButton = (Button) findViewById(R.id.visibleFbButton);
+        visibleTwiButton = (Button) findViewById(R.id.visibleTwiButton);
+
+        visibleFbButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                facebookButton.performClick();
+            }
+        });
+
+        visibleTwiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                twitterButton.performClick();
+            }
+        });
+
 
         accountButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +145,7 @@ public class AuthMainActivity extends AppCompatActivity implements GoogleApiClie
             }
         };
 
-        twitterButton = (TwitterLoginButton) findViewById(R.id.buttonTwitter);
+
 
         twitterButton.setCallback(new Callback<TwitterSession>() {
             @Override
@@ -137,9 +172,7 @@ public class AuthMainActivity extends AppCompatActivity implements GoogleApiClie
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        Button mailButton = (Button) findViewById(R.id.buttonMail);
-        Button gMailButton = (Button) findViewById(R.id.buttonGMail);
-        LoginButton facebookButton = (LoginButton) findViewById(R.id.buttonFb);
+
 
         mailButton.setOnClickListener(new View.OnClickListener() {
             @Override
