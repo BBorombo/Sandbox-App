@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundPrimary"
+    android:background="#c1df6c14"
     tools:context="com.borombo.sandboxapp.firebase.AuthMainActivity">
 
     <TextView
@@ -13,65 +13,122 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:text="Authentification"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintHorizontal_bias="0.506" />
 
     <Button
         android:id="@+id/buttonMail"
         style="@style/PrimaryButton"
-        android:background="@drawable/primary_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:drawableLeft="@drawable/mail_icon"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/firebase_mail_button"
         android:elevation="0dp"
         android:text="Mail"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/authTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/authTitle"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp" />
 
     <Button
         android:id="@+id/buttonGMail"
         style="@style/PrimaryButton"
-        android:background="@drawable/primary_button"
-        android:layout_width="wrap_content"
+        android:background="@drawable/firebase_gmail_button"
+        android:drawableLeft="@drawable/gmail_icon"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
         android:layout_marginTop="32dp"
         android:text="GMail"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMail" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonMail"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp" />
 
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/buttonFb"
-        android:layout_width="wrap_content"
+
+    <FrameLayout
+        android:id="@+id/frame_fb_button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/buttonGMail"
-        android:layout_marginRight="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonGMail">
 
-    <com.twitter.sdk.android.core.identity.TwitterLoginButton
-        android:id="@+id/buttonTwitter"
-        android:layout_width="wrap_content"
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/buttonFb"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/visibleFbButton"
+            style="@style/PrimaryButton"
+            android:background="@drawable/firebase_facebook_button"
+            android:drawableLeft="@drawable/facebook_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="32dp"
+            android:text="Facebook"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp" />
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/frame_twitter_button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFb"
-        android:layout_marginRight="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/frame_fb_button">
+
+        <com.twitter.sdk.android.core.identity.TwitterLoginButton
+            android:id="@+id/buttonTwitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/visibleTwiButton"
+            style="@style/PrimaryButton"
+            android:drawableLeft="@drawable/twitter_icon"
+
+            android:background="@drawable/firebase_twitter_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="32dp"
+            android:text="Twitter"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp" />
+
+    </FrameLayout>
+
 
     <Button
         android:id="@+id/signOutButton"
@@ -81,7 +138,8 @@
         android:layout_marginRight="8dp"
         android:text="Sign out"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/accountHomePageButton"
@@ -91,6 +149,7 @@
         android:layout_marginLeft="8dp"
         android:text="Go to Account Page"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp" />
 
 </android.support.constraint.ConstraintLayout>
