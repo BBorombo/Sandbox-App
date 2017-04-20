@@ -1,13 +1,15 @@
-package com.borombo.sandboxapp;
+package com.borombo.sandboxapp.firebase;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-public class HomeProfileActivity extends AppCompatActivity {
+import com.borombo.sandboxapp.R;
+
+public class FirebaseMainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_profile);
+        setContentView(R.layout.activity_firebase_main);
     }
 }

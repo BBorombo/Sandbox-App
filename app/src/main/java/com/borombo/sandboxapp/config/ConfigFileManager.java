@@ -1,8 +1,10 @@
-package com.borombo.sandboxapp;
+package com.borombo.sandboxapp.config;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.Log;
+
+import com.borombo.sandboxapp.R;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,8 +14,8 @@ import java.util.Properties;
  * Created by Phantom on 19/04/2017.
  */
 
-public class Config {
-    private static final String TAG = "Config";
+public class ConfigFileManager {
+    private static final String TAG = "ConfigFileManager";
 
     public static String getConfigValue(Context context, String name){
         Resources resources = context.getResources();

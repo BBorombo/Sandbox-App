@@ -1,4 +1,4 @@
-package com.borombo.sandboxapp;
+package com.borombo.sandboxapp.firebase;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.borombo.sandboxapp.R;
+import com.borombo.sandboxapp.config.ConfigFileManager;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -40,7 +42,7 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import io.fabric.sdk.android.Fabric;
 
-public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class AuthMainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
     private static final String TWITTER_KEY = "twitter_key";
@@ -66,9 +68,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TwitterAuthConfig authConfig = new TwitterAuthConfig(Config.getConfigValue(this,TWITTER_KEY), Config.getConfigValue(this,TWITTER_SECRET));
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(ConfigFileManager.getConfigValue(this,TWITTER_KEY), ConfigFileManager.getConfigValue(this,TWITTER_SECRET));
         Fabric.with(this, new Twitter(authConfig));
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_firebase_auth_main);
 
         signOutButton = (Button) findViewById(R.id.signOutButton);
         accountButton = (Button) findViewById(R.id.accountHomePageButton);
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         accountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, HomeProfileActivity.class);
+                Intent intent = new Intent(AuthMainActivity.this, HomeProfileActivity.class);
                 startActivity(intent);
             }
         });
@@ -142,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         mailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MailAuthActivity.class);
+                Intent intent = new Intent(AuthMainActivity.this, MailAuthActivity.class);
                 startActivity(intent);
             }
         });
@@ -232,10 +234,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
                         if (!task.isSuccessful()){
                             Log.w(TAG_GMAIL, "signInWithCredential", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                            Toast.makeText(AuthMainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }else{
-                            Intent intent = new Intent(MainActivity.this, HomeProfileActivity.class);
+                            Intent intent = new Intent(AuthMainActivity.this, HomeProfileActivity.class);
                             startActivity(intent);
                         }
                     }

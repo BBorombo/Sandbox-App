@@ -14,22 +14,27 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".common.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".firebase.AuthMainActivity" />
         <activity
-            android:name=".MailAuthActivity"
+            android:name=".firebase.MailAuthActivity"
             android:label="@string/title_activity_mail_auth" />
-        <activity android:name=".HomeProfileActivity"></activity>
+        <activity android:name=".firebase.HomeProfileActivity" />
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="1ffbb4d8f56b452c2f6a45c95bd92187e4308015" />
+
+        <activity android:name=".firebase.FirebaseMainActivity"></activity>
     </application>
 
 </manifest>
