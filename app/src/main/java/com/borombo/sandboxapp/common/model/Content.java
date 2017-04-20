@@ -9,15 +9,14 @@ public class Content {
     private int id;
     private String name;
     private String description;
-    private int imgId;
-
+    private int icon;
     private Class<?> contentMainClass;
 
-    public Content(int id, String name, String description, int imgId, Class<?> contentMainClass) {
+    public Content(int id, String name, String description, int icon, Class<?> contentMainClass) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.imgId = imgId;
+        this.icon = icon;
         this.contentMainClass = contentMainClass;
     }
 
@@ -45,12 +44,12 @@ public class Content {
         this.description = description;
     }
 
-    public int getImgId() {
-        return imgId;
+    public int getIcon() {
+        return icon;
     }
 
-    public void setImgId(int imgId) {
-        this.imgId = imgId;
+    public void setIcon(int icon) {
+        this.icon = icon;
     }
 
     public Class<?> getContentMainClass() {

@@ -1,6 +1,7 @@
 package com.borombo.sandboxapp.common;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,16 +29,17 @@ public class HomeContentAdapter extends RecyclerView.Adapter<HomeContentHolder> 
     }
 
     @Override
-    public void onBindViewHolder(HomeContentHolder holder, int position) {
-        final Content profile = contents.get(position);
+    public void onBindViewHolder(final HomeContentHolder holder, int position) {
+        final Content content = contents.get(position);
         final Context context = holder.itemView.getContext();
 
-        holder.updateUI(profile);
+        holder.updateUI(content, context);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(context, content.getContentMainClass());
+                context.startActivity(intent);
             }
         });
     }
