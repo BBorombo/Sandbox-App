@@ -36,7 +36,9 @@
                 android:text="TextView"
                 app:layout_constraintLeft_toRightOf="@+id/contentIcon"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="25sp"
+                fontPath="fonts/AvenirNextLTPro-Demi.otf"/>
 
             <TextView
                 android:id="@+id/contentDescription"

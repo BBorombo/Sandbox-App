@@ -5,9 +5,22 @@
     <string name="facebook_app_id">806992119465860</string>
 
 
-    <!-- FIrebase -->
+    <!-- Firebase -->
+    <string name="firebase">Firebase</string>
+    <string name="firebase_desc">Firebase features : Many Authentication, Database storage...</string>
     <string name="firebase_auth">Authentication</string>
     <string name="firebase_database">Database</string>
+
+    <!-- Calligraphy -->
+    <string name="calligraphy">Calligraphy</string>
+    <string name="calligraphy_desc">Easily add custom font through your app</string>
+    <string name="calligraphy_title">Custom used font : Avenir Next LT Pro</string>
+    <string name="calligraphy_regular">Regular</string>
+    <string name="calligraphy_demi">Demi</string>
+    <string name="calligraphy_bold">Bold</string>
+    <string name="calligraphy_heavy">Heavy</string>
+    <string name="calligraphy_ultraLight">Ultra light</string>
+    <string name="githubLink">github.com/chrisjenx/Calligraphy</string>
 
     <!-- Strings related to Mail login - Firebase-->
     <string name="prompt_email">Email</string>
