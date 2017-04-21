@@ -9,7 +9,7 @@
     <string name="firebase_auth">Authentication</string>
     <string name="firebase_database">Database</string>
 
-    <!-- Strings related to login -->
+    <!-- Strings related to Mail login - Firebase-->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>

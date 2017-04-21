@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.borombo.sandboxapp.R;
+import com.borombo.sandboxapp.calligraphy.CalligraphyMainActivity;
 import com.borombo.sandboxapp.common.HomeContentAdapter;
 import com.borombo.sandboxapp.common.model.Content;
 import com.borombo.sandboxapp.firebase.FirebaseMainActivity;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         contents = new ArrayList<>();
 
         contents.add(new Content(0,"Firebase","Many Authentcation, Database storage...", R.drawable.firebase_icon, FirebaseMainActivity.class));
+        contents.add(new Content(1,"Calligraphy","Easly add custom font ", R.drawable.calligraphy_icon, CalligraphyMainActivity.class));
 
         RecyclerView contentRecyclerView = (RecyclerView) findViewById(R.id.contentRecyclerView);
 
