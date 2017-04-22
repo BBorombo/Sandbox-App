@@ -11,17 +11,6 @@
     <string name="firebase_auth">Authentication</string>
     <string name="firebase_database">Database</string>
 
-    <!-- Calligraphy -->
-    <string name="calligraphy">Calligraphy</string>
-    <string name="calligraphy_desc">Easily add custom font through your app</string>
-    <string name="calligraphy_title">Custom used font : Avenir Next LT Pro</string>
-    <string name="calligraphy_regular">Regular</string>
-    <string name="calligraphy_demi">Demi</string>
-    <string name="calligraphy_bold">Bold</string>
-    <string name="calligraphy_heavy">Heavy</string>
-    <string name="calligraphy_ultraLight">Ultra light</string>
-    <string name="githubLink">github.com/chrisjenx/Calligraphy</string>
-
     <!-- Strings related to Mail login - Firebase-->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
@@ -35,4 +24,25 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+
+    <!-- Calligraphy -->
+    <string name="calligraphy">Calligraphy</string>
+    <string name="calligraphy_desc">Easily add custom font through your app</string>
+    <string name="calligraphy_title">Custom used font : Avenir Next LT Pro</string>
+    <string name="calligraphy_regular">Regular</string>
+    <string name="calligraphy_demi">Demi</string>
+    <string name="calligraphy_bold">Bold</string>
+    <string name="calligraphy_heavy">Heavy</string>
+    <string name="calligraphy_ultraLight">Ultra light</string>
+    <string name="githubLink">github.com/chrisjenx/Calligraphy</string>
+
+    <!-- Retrofit -->
+    <string name="retrofit">Retrofit</string>
+    <string name="retrofit_desc">An easy HTTP client for Android. Mainly used to make call Rest API</string>
+    <string name="retrofit_used_api">Used API :</string>
+    <string name="retrofit_api_link">https://jsonplaceholder.typicode.com/</string>
+
+
+
 </resources>
