@@ -8,9 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.borombo.sandboxapp.R;
-import com.borombo.sandboxapp.retrofit.services.JSONPlaceholderService;
+import com.borombo.sandboxapp.retrofit.adapters.RetrofitActionAdapter;
 
-import retrofit2.Retrofit;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class RetrofitMainActivity extends AppCompatActivity {
@@ -28,11 +27,6 @@ public class RetrofitMainActivity extends AppCompatActivity {
         actionsRecyclerView.setAdapter(adapter);
         actionsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(JSONPlaceholderService.URL)
-                .build();
-
-        JSONPlaceholderService service = retrofit.create(JSONPlaceholderService.class);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.borombo.sandboxapp.retrofit;
+package com.borombo.sandboxapp.retrofit.holders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
