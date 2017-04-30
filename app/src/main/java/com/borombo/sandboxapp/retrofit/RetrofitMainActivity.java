@@ -6,6 +6,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.util.Linkify;
+import android.widget.TextView;
 
 import com.borombo.sandboxapp.R;
 import com.borombo.sandboxapp.retrofit.adapters.RetrofitActionAdapter;
@@ -26,6 +28,9 @@ public class RetrofitMainActivity extends AppCompatActivity {
         RetrofitActionAdapter adapter = new RetrofitActionAdapter();
         actionsRecyclerView.setAdapter(adapter);
         actionsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        TextView apiLink = (TextView) findViewById(R.id.apiLink);
+        Linkify.addLinks(apiLink, Linkify.ALL);
 
     }
 
