@@ -19,3 +19,6 @@ Android Sandbox app for testing different commonly used libraries.
 ### Calligraphy
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Library which allow to use custom fonts through your app in a pretty easy way
 
+### Retrofit
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Easy and most used way to call REST API through your App  
+
