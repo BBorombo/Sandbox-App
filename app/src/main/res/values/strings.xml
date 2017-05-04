@@ -43,5 +43,9 @@
     <string name="retrofit_used_api">Used API :</string>
     <string name="retrofit_api_link">https://jsonplaceholder.typicode.com/</string>
 
+    <!-- ButterKnife -->
+    <string name="butterknife">Butterknife</string>
+    <string name="butterknife_desc">Field and method binding for Android views which uses annotation processing to generate boilerplate code for you.</string>
+    <string name="first_text">My first butterknife view binding !</string>
 
 </resources>

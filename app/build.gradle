@@ -9,6 +9,7 @@ buildscript {
 }
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
+apply plugin: 'com.jakewharton.butterknife'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -52,6 +53,8 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:4.+'
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 }
