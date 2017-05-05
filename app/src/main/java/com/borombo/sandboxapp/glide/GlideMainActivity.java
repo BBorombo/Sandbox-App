@@ -1,19 +1,18 @@
 package com.borombo.sandboxapp.glide;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.content.ContextCompat;
 import android.widget.ImageView;
 
 import com.borombo.sandboxapp.R;
+import com.borombo.sandboxapp.common.activities.CommonActivity;
 import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class GlideMainActivity extends AppCompatActivity {
+public class GlideMainActivity extends CommonActivity {
 
     // ButterKnife Used
     @BindView(R.id.basicImage)
@@ -31,6 +30,9 @@ public class GlideMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_glide_main);
+
+        setUpActionBar(getString(R.string.glide), ContextCompat.getColor(this, R.color.glide));
+
         ButterKnife.bind(this);
 
         // Basic img
@@ -62,10 +64,5 @@ public class GlideMainActivity extends AppCompatActivity {
                 .load("https://upload.wikimedia.org/wikipedia/en/e/ec/Lisa_Simpson.png")
                 .bitmapTransform(new CropCircleTransformation(this))
                 .into(transformedImg);
-    }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 }

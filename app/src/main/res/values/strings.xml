@@ -8,7 +8,9 @@
     <!-- Firebase -->
     <string name="firebase">Firebase</string>
     <string name="firebase_desc">Firebase features : Many Authentication, Database storage...</string>
+    <string name="firebase_authentication">Firebase Authentication</string>
     <string name="firebase_auth">Authentication</string>
+    <string name="firebase_mail_auth">Mail Authentication</string>
     <string name="firebase_database">Database</string>
 
     <!-- Strings related to Mail login - Firebase-->

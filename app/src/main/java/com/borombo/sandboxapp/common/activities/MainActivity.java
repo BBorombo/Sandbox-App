@@ -1,8 +1,6 @@
 package com.borombo.sandboxapp.common.activities;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -13,13 +11,11 @@ import com.borombo.sandboxapp.common.HomeContentAdapter;
 import com.borombo.sandboxapp.common.model.Content;
 import com.borombo.sandboxapp.firebase.FirebaseMainActivity;
 import com.borombo.sandboxapp.glide.GlideMainActivity;
-import com.borombo.sandboxapp.retrofit.RetrofitMainActivity;
+import com.borombo.sandboxapp.retrofit.activities.RetrofitMainActivity;
 
 import java.util.ArrayList;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends CommonActivity {
 
     private HomeContentAdapter contentAdapter;
     private ArrayList<Content> contents;
@@ -28,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setUpActionBar(getString(R.string.app_name));
+
         contents = new ArrayList<>();
 
         contents.add(new Content(0,getString(R.string.firebase),getString(R.string.firebase_desc), R.drawable.firebase_icon, FirebaseMainActivity.class));
@@ -44,8 +42,4 @@ public class MainActivity extends AppCompatActivity {
         contentRecyclerView.setAdapter(contentAdapter);
     }
 
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
-    }
 }

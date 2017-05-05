@@ -17,6 +17,10 @@
     <color name="firebase_accent_op">#73ffa610</color>
     <color name="firebase_accent">#ffa610</color>
 
+    <color name="butterknife">#fcc659</color>
+
+    <color name="glide">#25baa2</color>
+
     <color name="auth_mail">#9ccc65</color>
 
     <color name="backgroundPrimary">#e2202325</color>

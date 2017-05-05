@@ -37,8 +37,8 @@
             android:value="1ffbb4d8f56b452c2f6a45c95bd92187e4308015" />
 
         <activity android:name=".firebase.FirebaseMainActivity" />
-        <activity android:name=".retrofit.RetrofitMainActivity" />
-        <activity android:name=".retrofit.RetrofitGetActionResult" />
+        <activity android:name=".retrofit.activities.RetrofitMainActivity" />
+        <activity android:name=".retrofit.activities.RetrofitGetActionResultActivity" />
         <activity android:name=".butterknife.ButterKnifeMainActivity" />
         <activity android:name=".glide.GlideMainActivity"></activity>
     </application>

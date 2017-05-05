@@ -1,18 +1,16 @@
 package com.borombo.sandboxapp.firebase;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.borombo.sandboxapp.R;
+import com.borombo.sandboxapp.common.activities.CommonActivity;
 import com.borombo.sandboxapp.config.ConfigFileManager;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -45,7 +43,7 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import io.fabric.sdk.android.Fabric;
 
-public class AuthMainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class AuthMainActivity extends CommonActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
     private static final String TWITTER_KEY = "twitter_key";
@@ -80,9 +78,7 @@ public class AuthMainActivity extends AppCompatActivity implements GoogleApiClie
         Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_firebase_auth_main);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Firebase Auth");
-        actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.firebase_dark)));
+        setUpActionBar(getString(R.string.firebase_authentication), ContextCompat.getColor(this, R.color.firebase_dark));
 
         mailButton = (Button) findViewById(R.id.buttonMail);
         gMailButton = (Button) findViewById(R.id.buttonGMail);

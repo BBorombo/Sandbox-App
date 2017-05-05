@@ -1,12 +1,11 @@
-package com.borombo.sandboxapp.retrofit;
+package com.borombo.sandboxapp.retrofit.activities;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.borombo.sandboxapp.R;
+import com.borombo.sandboxapp.common.activities.CommonActivity;
 import com.borombo.sandboxapp.retrofit.adapters.RetrofitActionAdapter;
 import com.borombo.sandboxapp.retrofit.adapters.RetrofitPostsAdapter;
 import com.borombo.sandboxapp.retrofit.adapters.RetrofitTodosAdapter;
@@ -23,15 +22,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
-public class RetrofitGetActionResult extends AppCompatActivity {
+public class RetrofitGetActionResultActivity extends CommonActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retrofit_get_action_result);
+
+        setUpActionBar(getString(R.string.retrofit));
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.actionResultRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -94,10 +94,5 @@ public class RetrofitGetActionResult extends AppCompatActivity {
                 break;
         }
 
-    }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 }

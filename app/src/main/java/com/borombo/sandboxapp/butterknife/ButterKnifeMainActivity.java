@@ -1,18 +1,16 @@
 package com.borombo.sandboxapp.butterknife;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.borombo.sandboxapp.R;
+import com.borombo.sandboxapp.common.activities.CommonActivity;
 
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class ButterKnifeMainActivity extends AppCompatActivity {
+public class ButterKnifeMainActivity extends CommonActivity {
 
     @BindView(R.id.text_one)
     TextView textViewOne;
@@ -24,16 +22,13 @@ public class ButterKnifeMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_butter_knife_main);
+
+        setUpActionBar(getString(R.string.butterknife));
+
         ButterKnife.bind(this);
 
         textViewOne.setText(textOne);
 
-    }
-
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 
 }
