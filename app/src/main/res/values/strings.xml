@@ -4,7 +4,6 @@
 
     <string name="facebook_app_id">806992119465860</string>
 
-
     <!-- Firebase -->
     <string name="firebase">Firebase</string>
     <string name="firebase_desc">Firebase features : Many Authentication, Database storage...</string>
@@ -58,8 +57,5 @@
     <string name="glide_placeholder">Placeholder and error image</string>
     <string name="glide_cropp">Cropped image</string>
     <string name="glide_transform">Transformed image</string>
-
-
-
 
 </resources>

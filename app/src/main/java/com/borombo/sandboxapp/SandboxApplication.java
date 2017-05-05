@@ -2,6 +2,8 @@ package com.borombo.sandboxapp;
 
 import android.app.Application;
 
+import com.squareup.leakcanary.LeakCanary;
+
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
@@ -18,6 +20,8 @@ public class SandboxApplication extends Application {
                                 .setFontAttrId(R.attr.fontPath)
                                 .build()
         );
+        if (LeakCanary.isInAnalyzerProcess(this)){return;}
+        LeakCanary.install(this);
     }
 
 }
