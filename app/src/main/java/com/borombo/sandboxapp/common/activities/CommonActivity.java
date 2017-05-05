@@ -21,6 +21,11 @@ public class CommonActivity extends AppCompatActivity {
     protected CalligraphyTypefaceSpan typefaceSpan;
     protected SpannableString titleActionBar;
 
+    /**
+     * Setup the color and the title of the ActionBar
+     * @param title
+     * @param color
+     */
     protected void setUpActionBar(String title, int color){
         actionBar = getSupportActionBar();
         typefaceSpan = new CalligraphyTypefaceSpan(TypefaceUtils.load(getAssets(), "fonts/AvenirNextLTPro-Demi.otf"));
@@ -38,6 +43,10 @@ public class CommonActivity extends AppCompatActivity {
         actionBar.setTitle(titleActionBar);
     }
 
+    /**
+     * Setup the defaut custom font to all the texts of the activity
+     * @param base
+     */
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(base));

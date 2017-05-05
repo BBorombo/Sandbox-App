@@ -41,6 +41,8 @@ import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.fabric.sdk.android.Fabric;
 
 public class AuthMainActivity extends CommonActivity implements GoogleApiClient.OnConnectionFailedListener {
@@ -60,15 +62,24 @@ public class AuthMainActivity extends CommonActivity implements GoogleApiClient.
     private static final String TAG_TWITTER = "TwitterAuth";
 
     private CallbackManager callbackManager;
-    private TwitterLoginButton twitterButton;
-    private LoginButton facebookButton;
 
-    private Button mailButton;
-    private Button gMailButton;
-    private Button signOutButton;
-    private Button accountButton;
-    private Button visibleFbButton;
-    private Button visibleTwiButton;
+    @BindView(R.id.buttonTwitter)
+    TwitterLoginButton twitterButton;
+    @BindView(R.id.buttonFb)
+    LoginButton facebookButton;
+
+    @BindView(R.id.buttonMail)
+    Button mailButton;
+    @BindView(R.id.buttonGMail)
+    Button gMailButton;
+    @BindView(R.id.signOutButton)
+    Button signOutButton;
+    @BindView(R.id.accountHomePageButton)
+    Button accountButton;
+    @BindView(R.id.visibleFbButton)
+    Button visibleFbButton;
+    @BindView(R.id.visibleTwiButton)
+    Button visibleTwiButton;
 
 
     @Override
@@ -78,19 +89,12 @@ public class AuthMainActivity extends CommonActivity implements GoogleApiClient.
         Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_firebase_auth_main);
 
+        ButterKnife.bind(this);
+
         setUpActionBar(getString(R.string.firebase_authentication), ContextCompat.getColor(this, R.color.firebase_dark));
 
-        mailButton = (Button) findViewById(R.id.buttonMail);
-        gMailButton = (Button) findViewById(R.id.buttonGMail);
-
-        facebookButton = (LoginButton) findViewById(R.id.buttonFb);
-        twitterButton = (TwitterLoginButton) findViewById(R.id.buttonTwitter);
-
-        signOutButton = (Button) findViewById(R.id.signOutButton);
-        accountButton = (Button) findViewById(R.id.accountHomePageButton);
-        visibleFbButton = (Button) findViewById(R.id.visibleFbButton);
-        visibleTwiButton = (Button) findViewById(R.id.visibleTwiButton);
-
+        // Visible button will be placed in front of the real one to use my own design, so I perform
+        // the click when user click on the visible one.
         visibleFbButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,6 +127,7 @@ public class AuthMainActivity extends CommonActivity implements GoogleApiClient.
             }
         });
 
+        // Authentication listener setup
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener(){
 
@@ -185,7 +190,7 @@ public class AuthMainActivity extends CommonActivity implements GoogleApiClient.
             }
         });
 
-
+        // Facebook connexion setup
         callbackManager = CallbackManager.Factory.create();
         facebookButton.setReadPermissions("email","public_profile");
         facebookButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -207,6 +212,10 @@ public class AuthMainActivity extends CommonActivity implements GoogleApiClient.
         });
     }
 
+    /**
+     * Handle the connexion with a twitter account
+     * @param session
+     */
     private void handleTwitterSessison(TwitterSession session) {
         Log.d(TAG_TWITTER, "handleTwitterSession:" + session);
 
@@ -230,6 +239,9 @@ public class AuthMainActivity extends CommonActivity implements GoogleApiClient.
         }
     }
 
+    /**
+     * Pass the activity to the GoogleSignIn Process
+     */
     private void googleSignIn(){
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -240,6 +252,7 @@ public class AuthMainActivity extends CommonActivity implements GoogleApiClient.
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN){
+            // Google Sign in result
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()){
                 GoogleSignInAccount account = result.getSignInAccount();
@@ -248,12 +261,18 @@ public class AuthMainActivity extends CommonActivity implements GoogleApiClient.
                 // TODO : Handle Fail GOogle AUth
             }
         }else if(requestCode == TwitterAuthConfig.DEFAULT_AUTH_REQUEST_CODE){
+            // Twitter Sign in result
             twitterButton.onActivityResult(requestCode, resultCode, data);
         }else{
+            // Facebook Sign in result
             callbackManager.onActivityResult(requestCode, resultCode, data);
         }
     }
 
+    /**
+     * Handle the connexion with credentials
+     * @param credential
+     */
     private void credentialFirebaseAuth(AuthCredential credential){
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

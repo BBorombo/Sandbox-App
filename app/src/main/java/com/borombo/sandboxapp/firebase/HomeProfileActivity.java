@@ -1,11 +1,11 @@
 package com.borombo.sandboxapp.firebase;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.borombo.sandboxapp.R;
+import com.borombo.sandboxapp.common.activities.CommonActivity;
 
-public class HomeProfileActivity extends AppCompatActivity {
+public class HomeProfileActivity extends CommonActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

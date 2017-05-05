@@ -10,7 +10,15 @@ import com.borombo.sandboxapp.R;
 import com.borombo.sandboxapp.common.activities.CommonActivity;
 import com.borombo.sandboxapp.retrofit.adapters.RetrofitActionAdapter;
 
+import butterknife.BindView;
+
 public class RetrofitMainActivity extends CommonActivity {
+
+    @BindView(R.id.retrofitActionRecyclerView)
+    RecyclerView actionsRecyclerView;
+
+    @BindView(R.id.apiLink)
+    TextView apiLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,14 +27,11 @@ public class RetrofitMainActivity extends CommonActivity {
 
         setUpActionBar(getString(R.string.retrofit));
 
-        RecyclerView actionsRecyclerView = (RecyclerView) findViewById(R.id.retrofitActionRecyclerView);
         RetrofitActionAdapter adapter = new RetrofitActionAdapter();
         actionsRecyclerView.setAdapter(adapter);
         actionsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        TextView apiLink = (TextView) findViewById(R.id.apiLink);
         Linkify.addLinks(apiLink, Linkify.ALL);
-
     }
 
 }

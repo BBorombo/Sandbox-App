@@ -15,11 +15,13 @@ public class SandboxApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        // Setupt Calligraphy
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                                 .setDefaultFontPath("fonts/AvenirNextLTPro-Cn.otf")
                                 .setFontAttrId(R.attr.fontPath)
                                 .build()
         );
+        // Setupt LeakCanary
         if (LeakCanary.isInAnalyzerProcess(this)){return;}
         LeakCanary.install(this);
     }

@@ -7,21 +7,25 @@ import android.widget.TextView;
 import com.borombo.sandboxapp.R;
 import com.borombo.sandboxapp.retrofit.model.JSPTodo;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Phantom on 30/04/2017.
  */
 
 public class RetrofitTodosHolder extends RecyclerView.ViewHolder {
 
-    private TextView todoId;
-    private TextView todoTitle;
-    private TextView todoCompleted;
+    @BindView(R.id.todo_id)
+    TextView todoId;
+    @BindView(R.id.todo_title)
+    TextView todoTitle;
+    @BindView(R.id.todo_completed)
+    TextView todoCompleted;
 
     public RetrofitTodosHolder(View itemView) {
         super(itemView);
-        todoId = (TextView) itemView.findViewById(R.id.todo_id);
-        todoTitle = (TextView) itemView.findViewById(R.id.todo_title);
-        todoCompleted = (TextView) itemView.findViewById(R.id.todo_completed);
+        ButterKnife.bind(this, itemView);
     }
 
     public void updateUI(JSPTodo todo){

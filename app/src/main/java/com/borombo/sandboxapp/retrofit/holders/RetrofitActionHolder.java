@@ -6,17 +6,21 @@ import android.widget.TextView;
 
 import com.borombo.sandboxapp.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Erwan on 22/04/2017.
  */
 
 public class RetrofitActionHolder extends RecyclerView.ViewHolder {
 
-    private TextView actionText;
+    @BindView(R.id.actionText)
+    TextView actionText;
 
     public RetrofitActionHolder(View itemView) {
         super(itemView);
-        this.actionText = (TextView) itemView.findViewById(R.id.actionText);
+        ButterKnife.bind(this, itemView);
     }
 
     public void updateUI(String text){
