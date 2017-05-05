@@ -1,5 +1,6 @@
 package com.borombo.sandboxapp.butterknife;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import com.borombo.sandboxapp.R;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ButterKnifeMainActivity extends AppCompatActivity {
 
@@ -27,4 +29,11 @@ public class ButterKnifeMainActivity extends AppCompatActivity {
         textViewOne.setText(textOne);
 
     }
+
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
+    }
+
 }

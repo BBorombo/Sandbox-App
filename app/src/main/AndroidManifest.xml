@@ -39,7 +39,8 @@
         <activity android:name=".firebase.FirebaseMainActivity" />
         <activity android:name=".retrofit.RetrofitMainActivity" />
         <activity android:name=".retrofit.RetrofitGetActionResult" />
-        <activity android:name=".butterknife.ButterKnifeMainActivity"></activity>
+        <activity android:name=".butterknife.ButterKnifeMainActivity" />
+        <activity android:name=".glide.GlideMainActivity"></activity>
     </application>
 
 </manifest>
