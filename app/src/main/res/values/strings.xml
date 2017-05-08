@@ -8,9 +8,13 @@
     <string name="firebase">Firebase</string>
     <string name="firebase_desc">Firebase features : Many Authentication, Database storage...</string>
     <string name="firebase_authentication">Firebase Authentication</string>
+    <string name="firebase_cm">Firebase Cloud Messaging</string>
     <string name="firebase_auth">Authentication</string>
     <string name="firebase_mail_auth">Mail Authentication</string>
     <string name="firebase_database">Database</string>
+    <string name="firebase_cloud_messaging">Cloud Messaging</string>
+    <string name="firebase_storage">Storage</string>
+    <string name="deviceTokenLabel">Device Token :</string>
 
     <!-- Strings related to Mail login - Firebase-->
     <string name="prompt_email">Email</string>

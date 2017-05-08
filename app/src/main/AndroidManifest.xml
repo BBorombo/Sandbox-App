@@ -22,11 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".firebase.AuthMainActivity" />
+        <activity android:name=".firebase.authentication.AuthMainActivity" />
         <activity
-            android:name=".firebase.MailAuthActivity"
+            android:name=".firebase.authentication.MailAuthActivity"
             android:label="@string/title_activity_mail_auth" />
-        <activity android:name=".firebase.HomeProfileActivity" />
+        <activity android:name=".firebase.authentication.HomeProfileActivity" />
         <activity android:name=".calligraphy.CalligraphyMainActivity" />
 
         <meta-data
@@ -40,7 +40,23 @@
         <activity android:name=".retrofit.activities.RetrofitMainActivity" />
         <activity android:name=".retrofit.activities.RetrofitGetActionResultActivity" />
         <activity android:name=".butterknife.ButterKnifeMainActivity" />
-        <activity android:name=".glide.GlideMainActivity"></activity>
+        <activity android:name=".glide.GlideMainActivity" />
+        <activity android:name=".firebase.cloudmessaging.CloudMessagingMainActivity"></activity>
+
+        <service
+            android:name=".firebase.cloudmessaging.FirebaseIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".firebase.cloudmessaging.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

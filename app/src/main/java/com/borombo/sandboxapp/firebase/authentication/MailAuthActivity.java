@@ -1,4 +1,4 @@
-package com.borombo.sandboxapp.firebase;
+package com.borombo.sandboxapp.firebase.authentication;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

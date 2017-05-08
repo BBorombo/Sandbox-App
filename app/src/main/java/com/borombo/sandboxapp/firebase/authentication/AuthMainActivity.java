@@ -1,4 +1,4 @@
-package com.borombo.sandboxapp.firebase;
+package com.borombo.sandboxapp.firebase.authentication;
 
 import android.content.Intent;
 import android.os.Bundle;

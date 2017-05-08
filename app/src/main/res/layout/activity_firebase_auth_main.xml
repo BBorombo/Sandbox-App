@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#c1df6c14"
-    tools:context="com.borombo.sandboxapp.firebase.AuthMainActivity">
+    tools:context="com.borombo.sandboxapp.firebase.authentication.AuthMainActivity">
 
     <TextView
         android:id="@+id/authTitle"
