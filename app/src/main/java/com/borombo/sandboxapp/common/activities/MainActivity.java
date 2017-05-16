@@ -11,6 +11,7 @@ import com.borombo.sandboxapp.calligraphy.CalligraphyMainActivity;
 import com.borombo.sandboxapp.common.HomeContentAdapter;
 import com.borombo.sandboxapp.common.model.Content;
 import com.borombo.sandboxapp.firebase.FirebaseMainActivity;
+import com.borombo.sandboxapp.inapppurchase.InAppPurchaseMainActivity;
 import com.borombo.sandboxapp.retrofit.RetrofitMainActivity;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         contents.add(new Content(0,getString(R.string.firebase),getString(R.string.firebase_desc), R.drawable.firebase_icon, FirebaseMainActivity.class));
         contents.add(new Content(1,getString(R.string.calligraphy),getString(R.string.calligraphy_desc), R.drawable.calligraphy_icon, CalligraphyMainActivity.class));
         contents.add(new Content(2,getString(R.string.retrofit),getString(R.string.retrofit_desc), R.drawable.retrofit_icon, RetrofitMainActivity.class));
+        contents.add(new Content(3,getString(R.string.inAppPurchase),getString(R.string.inAppPurchase_desc), R.drawable.retrofit_icon, InAppPurchaseMainActivity.class));
 
         RecyclerView contentRecyclerView = (RecyclerView) findViewById(R.id.contentRecyclerView);
 

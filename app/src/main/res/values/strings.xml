@@ -43,5 +43,9 @@
     <string name="retrofit_used_api">Used API :</string>
     <string name="retrofit_api_link">https://jsonplaceholder.typicode.com/</string>
 
+    <!-- In App Purchase -->
+    <string name="inAppPurchase">In App Purchase </string>
+    <string name="inAppPurchase_desc">Possibility to buy some in App content through your app</string>
+
 
 </resources>
