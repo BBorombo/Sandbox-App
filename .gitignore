@@ -10,3 +10,5 @@
 */config.properties
 app/src/main/rew/raw/config.properties
 app/src/main/res/raw/config\.properties
+
+app/fabric\.properties

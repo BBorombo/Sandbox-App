@@ -2,6 +2,8 @@ package com.borombo.sandboxapp;
 
 import android.app.Application;
 
+import com.squareup.leakcanary.LeakCanary;
+
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
@@ -13,11 +15,15 @@ public class SandboxApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        // Setupt Calligraphy
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                                 .setDefaultFontPath("fonts/AvenirNextLTPro-Cn.otf")
                                 .setFontAttrId(R.attr.fontPath)
                                 .build()
         );
+        // Setupt LeakCanary
+        if (LeakCanary.isInAnalyzerProcess(this)){return;}
+        LeakCanary.install(this);
     }
 
 }

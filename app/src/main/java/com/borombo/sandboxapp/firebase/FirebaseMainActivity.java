@@ -1,29 +1,30 @@
 package com.borombo.sandboxapp.firebase;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.borombo.sandboxapp.R;
+import com.borombo.sandboxapp.common.activities.CommonActivity;
 
-public class FirebaseMainActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class FirebaseMainActivity extends CommonActivity {
+
+    @BindView(R.id.firebaseAuthView)
+    ConstraintLayout authView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firebase_main);
+        ButterKnife.bind(this);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Firebase");
-        actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this,R.color.firebase_dark)));
+        setUpActionBar(getString(R.string.firebase), ContextCompat.getColor(this,R.color.firebase_dark));
 
-
-        ConstraintLayout authView = (ConstraintLayout) findViewById(R.id.firebaseAuthView);
         authView.setClickable(true);
         authView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,4 +34,5 @@ public class FirebaseMainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

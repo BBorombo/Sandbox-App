@@ -35,6 +35,7 @@ public class HomeContentAdapter extends RecyclerView.Adapter<HomeContentHolder> 
 
         holder.updateUI(content, context);
 
+        // Go the MainActivity of the selected content
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

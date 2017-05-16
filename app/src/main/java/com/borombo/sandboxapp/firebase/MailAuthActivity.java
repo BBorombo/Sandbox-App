@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,8 +16,6 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -33,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.borombo.sandboxapp.R;
+import com.borombo.sandboxapp.common.activities.CommonActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -42,12 +40,15 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class MailAuthActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class MailAuthActivity extends CommonActivity implements LoaderCallbacks<Cursor> {
 
 
     private FirebaseAuth mAuth;
@@ -69,25 +70,26 @@ public class MailAuthActivity extends AppCompatActivity implements LoaderCallbac
     // private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
+    @BindView(R.id.email)
+    AutoCompleteTextView mEmailView;
+    @BindView(R.id.password)
+    EditText mPasswordView;
+    @BindView(R.id.login_progress)
+    View mProgressView;
+    @BindView(R.id.login_form)
+    View mLoginFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mail_auth);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Mail Authentication");
-        actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.firebase_dark)));
+        ButterKnife.bind(this);
+        setUpActionBar(getString(R.string.firebase_mail_auth),ContextCompat.getColor(this, R.color.firebase_dark));
 
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
 
-        mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -118,9 +120,6 @@ public class MailAuthActivity extends AppCompatActivity implements LoaderCallbac
                 }
             }
         });
-
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener(){

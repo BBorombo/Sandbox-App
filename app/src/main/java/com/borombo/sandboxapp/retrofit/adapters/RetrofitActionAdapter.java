@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.borombo.sandboxapp.R;
-import com.borombo.sandboxapp.retrofit.RetrofitGetActionResult;
+import com.borombo.sandboxapp.retrofit.activities.RetrofitGetActionResultActivity;
 import com.borombo.sandboxapp.retrofit.holders.RetrofitActionHolder;
 
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class RetrofitActionAdapter extends RecyclerView.Adapter<RetrofitActionHo
             @Override
             public void onClick(View v) {
                 TextView textView = (TextView) v.findViewById(R.id.actionText);
-                Intent intent = new Intent(context, RetrofitGetActionResult.class);
+                Intent intent = new Intent(context, RetrofitGetActionResultActivity.class);
                 intent.putExtra(RetrofitActionAdapter.EXTRA_NAME, textView.getText().toString());
                 context.startActivity(intent);
             }
