@@ -52,6 +52,9 @@
     <string name="butterknife">Butterknife</string>
     <string name="butterknife_desc">Field and method binding for Android views which uses annotation processing to generate boilerplate code for you.</string>
     <string name="first_text">My first butterknife view binding !</string>
+    <!-- In App Purchase -->
+    <string name="inAppPurchase">In App Purchase </string>
+    <string name="inAppPurchase_desc">Possibility to buy some in App content through your app</string>
 
     <!-- Glide -->
     <string name="glide">Glide</string>
