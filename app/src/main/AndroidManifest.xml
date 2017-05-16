@@ -43,6 +43,7 @@
         <activity android:name=".butterknife.ButterKnifeMainActivity" />
         <activity android:name=".glide.GlideMainActivity" />
         <activity android:name=".firebase.cloudmessaging.CloudMessagingMainActivity"></activity>
+        <activity android:name=".inapppurchase.InAppPurchaseMainActivity"></activity>
 
         <service
             android:name=".firebase.cloudmessaging.FirebaseIdService">
@@ -58,7 +59,6 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".inapppurchase.InAppPurchaseMainActivity"></activity>
     </application>
 
 </manifest>

@@ -11,9 +11,8 @@ import com.borombo.sandboxapp.common.HomeContentAdapter;
 import com.borombo.sandboxapp.common.model.Content;
 import com.borombo.sandboxapp.firebase.FirebaseMainActivity;
 import com.borombo.sandboxapp.glide.GlideMainActivity;
-import com.borombo.sandboxapp.retrofit.activities.RetrofitMainActivity;
 import com.borombo.sandboxapp.inapppurchase.InAppPurchaseMainActivity;
-import com.borombo.sandboxapp.retrofit.RetrofitMainActivity;
+import com.borombo.sandboxapp.retrofit.activities.RetrofitMainActivity;
 
 import java.util.ArrayList;
 
@@ -35,7 +34,7 @@ public class MainActivity extends CommonActivity {
         contents.add(new Content(2,getString(R.string.retrofit),getString(R.string.retrofit_desc), R.drawable.retrofit_icon, RetrofitMainActivity.class));
         contents.add(new Content(3,getString(R.string.butterknife),getString(R.string.butterknife_desc), R.drawable.butterknife_icon, ButterKnifeMainActivity.class));
         contents.add(new Content(4,getString(R.string.glide),getString(R.string.glide_desc), R.drawable.glide_icon, GlideMainActivity.class));
-        contents.add(new Content(3,getString(R.string.inAppPurchase),getString(R.string.inAppPurchase_desc), R.drawable.retrofit_icon, InAppPurchaseMainActivity.class));
+        contents.add(new Content(5,getString(R.string.inAppPurchase),getString(R.string.inAppPurchase_desc), R.drawable.retrofit_icon, InAppPurchaseMainActivity.class));
 
         RecyclerView contentRecyclerView = (RecyclerView) findViewById(R.id.contentRecyclerView);
 

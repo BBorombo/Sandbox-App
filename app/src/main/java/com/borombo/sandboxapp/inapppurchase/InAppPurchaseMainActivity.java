@@ -1,48 +1,62 @@
 package com.borombo.sandboxapp.inapppurchase;
 
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 
-import com.android.vending.billing.IInAppBillingService;
 import com.borombo.sandboxapp.R;
+import com.borombo.sandboxapp.SandboxApplication;
+
+import org.solovyev.android.checkout.ActivityCheckout;
+import org.solovyev.android.checkout.Checkout;
+import org.solovyev.android.checkout.EmptyRequestListener;
+import org.solovyev.android.checkout.Inventory;
+import org.solovyev.android.checkout.ProductTypes;
+import org.solovyev.android.checkout.Purchase;
 
 public class InAppPurchaseMainActivity extends AppCompatActivity {
 
-    IInAppBillingService mService;
 
-    ServiceConnection mServiceConn = new ServiceConnection() {
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            mService = null;
-        }
+    private final ActivityCheckout mCheckout = Checkout.forActivity(this, SandboxApplication.get().getBilling());
+    private Inventory mInventory;
 
-        @Override
-        public void onServiceConnected(ComponentName name,
-                                       IBinder service) {
-            mService = IInAppBillingService.Stub.asInterface(service);
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_app_purchase_main);
-        Intent serviceIntent =
-                new Intent("com.android.vending.billing.InAppBillingService.BIND");
-        serviceIntent.setPackage("com.android.vending");
-        bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
+
+        mCheckout.start();
+
+        mCheckout.createPurchaseFlow(new PurchaseListener());
+
+        mInventory = mCheckout.makeInventory();
+        mInventory.load(Inventory.Request.create()
+                .loadAllPurchases()
+                .loadSkus(ProductTypes.IN_APP, "sku_01"), new InventoryCallback());
     }
 
     @Override
     protected void onDestroy() {
+        mCheckout.stop();
         super.onDestroy();
-        if(mService != null){
-            unbindService(mServiceConn);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mCheckout.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    private class PurchaseListener extends EmptyRequestListener<Purchase> {
+        // your code here
+    }
+
+    private class InventoryCallback implements Inventory.Callback {
+        @Override
+        public void onLoaded(Inventory.Products products) {
+            // your code here
         }
     }
 }
