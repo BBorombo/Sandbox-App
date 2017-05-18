@@ -23,5 +23,7 @@
 
     <color name="auth_mail">#9ccc65</color>
 
+    <color name="checkout">#c4f191</color>
+
     <color name="backgroundPrimary">#e2202325</color>
 </resources>

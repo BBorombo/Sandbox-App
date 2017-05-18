@@ -34,7 +34,7 @@ public class MainActivity extends CommonActivity {
         contents.add(new Content(2,getString(R.string.retrofit),getString(R.string.retrofit_desc), R.drawable.retrofit_icon, RetrofitMainActivity.class));
         contents.add(new Content(3,getString(R.string.butterknife),getString(R.string.butterknife_desc), R.drawable.butterknife_icon, ButterKnifeMainActivity.class));
         contents.add(new Content(4,getString(R.string.glide),getString(R.string.glide_desc), R.drawable.glide_icon, GlideMainActivity.class));
-        contents.add(new Content(5,getString(R.string.inAppPurchase),getString(R.string.inAppPurchase_desc), R.drawable.retrofit_icon, InAppPurchaseMainActivity.class));
+        contents.add(new Content(5,getString(R.string.checkout),getString(R.string.checkout_desc), R.drawable.checkout_icon, InAppPurchaseMainActivity.class));
 
         RecyclerView contentRecyclerView = (RecyclerView) findViewById(R.id.contentRecyclerView);
 

@@ -1,7 +1,9 @@
 package com.borombo.sandboxapp;
 
+import android.app.Activity;
 import android.app.Application;
 
+import com.borombo.sandboxapp.config.ConfigFileManager;
 import com.squareup.leakcanary.LeakCanary;
 
 import org.solovyev.android.checkout.Billing;
@@ -19,6 +21,7 @@ public class SandboxApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
 
         // Setupt Calligraphy
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
@@ -32,10 +35,17 @@ public class SandboxApplication extends Application {
         LeakCanary.install(this);
     }
 
+    /**
+     +     * Returns an instance of {@link SandboxApplication} attached to the passed activity.
+     +     */
+    public static SandboxApplication get(Activity activity) {
+        return (SandboxApplication) activity.getApplication();
+    }
+
     private final Billing mBilling = new Billing(this, new Billing.DefaultConfiguration() {
         @Override
         public String getPublicKey() {
-            return "Your public key, don't forget abput encryption";
+            return ConfigFileManager.getConfigValue(instance,"app_licence_key");
         }
     });
 
