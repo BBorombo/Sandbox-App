@@ -13,6 +13,7 @@ import com.borombo.sandboxapp.firebase.FirebaseMainActivity;
 import com.borombo.sandboxapp.glide.GlideMainActivity;
 import com.borombo.sandboxapp.inapppurchase.InAppPurchaseMainActivity;
 import com.borombo.sandboxapp.retrofit.activities.RetrofitMainActivity;
+import com.borombo.sandboxapp.zxing.ZxingMainActivity;
 
 import java.util.ArrayList;
 
@@ -35,6 +36,7 @@ public class MainActivity extends CommonActivity {
         contents.add(new Content(3,getString(R.string.butterknife),getString(R.string.butterknife_desc), R.drawable.butterknife_icon, ButterKnifeMainActivity.class));
         contents.add(new Content(4,getString(R.string.glide),getString(R.string.glide_desc), R.drawable.glide_icon, GlideMainActivity.class));
         contents.add(new Content(5,getString(R.string.checkout),getString(R.string.checkout_desc), R.drawable.checkout_icon, InAppPurchaseMainActivity.class));
+        contents.add(new Content(6,getString(R.string.zxing),getString(R.string.zxing_desc), R.drawable.zxing_icon, ZxingMainActivity.class));
 
         RecyclerView contentRecyclerView = (RecyclerView) findViewById(R.id.contentRecyclerView);
 

@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".SandboxApplication"
@@ -42,23 +44,22 @@
         <activity android:name=".retrofit.activities.RetrofitGetActionResultActivity" />
         <activity android:name=".butterknife.ButterKnifeMainActivity" />
         <activity android:name=".glide.GlideMainActivity" />
-        <activity android:name=".firebase.cloudmessaging.CloudMessagingMainActivity"></activity>
-        <activity android:name=".inapppurchase.InAppPurchaseMainActivity"></activity>
+        <activity android:name=".firebase.cloudmessaging.CloudMessagingMainActivity" />
+        <activity android:name=".inapppurchase.InAppPurchaseMainActivity" />
 
-        <service
-            android:name=".firebase.cloudmessaging.FirebaseIdService">
+        <service android:name=".firebase.cloudmessaging.FirebaseIdService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".firebase.cloudmessaging.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <service
-            android:name=".firebase.cloudmessaging.MyFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
-
+        <activity android:name=".zxing.ZxingMainActivity" />
+        <activity android:name=".zxing.ZxingGenerateActivity"></activity>
     </application>
 
 </manifest>

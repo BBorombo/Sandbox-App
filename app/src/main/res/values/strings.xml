@@ -53,10 +53,6 @@
     <string name="butterknife_desc">Field and method binding for Android views which uses annotation processing to generate boilerplate code for you.</string>
     <string name="first_text">My first butterknife view binding !</string>
 
-    <!-- CHeckout -->
-    <string name="checkout">Checkout </string>
-    <string name="checkout_desc">Possibility to buy some in App content through your app. Easy implementation of the official documentation</string>
-
     <!-- Glide -->
     <string name="glide">Glide</string>
     <string name="glide_desc">Glide is a fast and efficient open source media management and image loading framework for Android.</string>
@@ -65,5 +61,18 @@
     <string name="glide_placeholder">Placeholder and error image</string>
     <string name="glide_cropp">Cropped image</string>
     <string name="glide_transform">Transformed image</string>
+
+    <!-- Checkout -->
+    <string name="checkout">Checkout </string>
+    <string name="checkout_desc">Possibility to buy some in App content through your app. Easy implementation of the official documentation</string>
+
+    <!-- Zxing -->
+    <string name="zxing">Zxing</string>
+    <string name="zxing_desc">Multi-format 1D/2D barcode image processing library - QRCode used here </string>
+    <string name="zxing_scan">Scan QRCode</string>
+    <string name="zxing_generate">Generate QRCode</string>
+    <string name="zxing_create">Create QRCode</string>
+    <string name="zxing_name">Name</string>
+    <string name="zxing_address">Address</string>
 
 </resources>
