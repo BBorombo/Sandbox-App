@@ -26,3 +26,6 @@ Android Sandbox app for testing different commonly used libraries.
 ### Glide
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An open source media management and image loading library
 
+### Checkout
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A library which simplify the implementation of official Android In APp Billing V3 API  
+
